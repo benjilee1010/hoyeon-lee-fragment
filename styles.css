@@ -701,6 +701,14 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-titl
 }
 
 @media (max-width: 768px) {
+  .main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .gallery {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
   .nav {
     flex-wrap: wrap;
     padding-top: 1.75rem;
