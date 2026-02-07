@@ -230,6 +230,7 @@ body {
 
 .artwork {
   animation: fadeIn 0.6s ease-out;
+  position: relative;
 }
 
 @keyframes fadeIn {
@@ -243,6 +244,19 @@ body {
   overflow: hidden;
   background: var(--bg-alt);
   margin-bottom: 1rem;
+}
+/* Dark overlay on hover (PC) */
+.artwork-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.25s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.gallery:not(.gallery--untitled) .artwork:hover .artwork-frame::before {
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .artwork-rotate-btn {
@@ -395,6 +409,33 @@ body.edit-mode .artwork.artwork-dragging {
   margin: 0 0 0.25rem;
   color: var(--text);
   text-align: center;
+  transition: opacity 0.2s ease;
+}
+
+/* On PC: title overlaid on image (center), only visible on hover */
+.gallery:not(.gallery--untitled) .artwork-title:not(.artwork-title--hidden) {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.gallery:not(.gallery--untitled) .artwork:hover .artwork-title:not(.artwork-title--hidden) {
+  opacity: 1;
+}
+body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-title--hidden) {
+  opacity: 1;
+  position: static;
+  color: var(--text);
+  text-shadow: none;
+  padding: 0;
+  margin: 0 0 0.25rem;
 }
 
 .artwork-title--hidden {
@@ -593,8 +634,19 @@ body.edit-mode .artwork.artwork-dragging {
   max-width: 95vw;
   max-height: 95vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.75rem;
+}
+.lightbox__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 .lightbox__img {
   max-width: 100%;

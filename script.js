@@ -2,16 +2,21 @@
 (function initLightbox() {
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
-  lightbox.innerHTML = '<div class="lightbox__inner"><button type="button" class="lightbox__close" aria-label="Close">&times;</button><img class="lightbox__img" src="" alt=""></div>';
+  lightbox.innerHTML = '<div class="lightbox__inner"><button type="button" class="lightbox__close" aria-label="Close">&times;</button><img class="lightbox__img" src="" alt=""><p class="lightbox__title"></p></div>';
   document.body.appendChild(lightbox);
   const img = lightbox.querySelector('.lightbox__img');
   const closeBtn = lightbox.querySelector('.lightbox__close');
+  const titleEl = lightbox.querySelector('.lightbox__title');
 
-  function open(src, rotationClass) {
+  function open(src, rotationClass, title) {
     img.src = src;
-    img.alt = '';
+    img.alt = title || '';
     img.className = 'lightbox__img';
     if (rotationClass) img.classList.add(rotationClass);
+    if (titleEl) {
+      titleEl.textContent = title || '';
+      titleEl.style.display = title ? 'block' : 'none';
+    }
     lightbox.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
@@ -29,10 +34,13 @@
       if (e.target.closest('.artwork-rotate-btn')) return;
       const im = frame.querySelector('img');
       if (!im || !im.src) return;
+      const artwork = frame.closest('.artwork');
+      const titleEl = artwork?.querySelector('.artwork-title');
+      const title = (titleEl && !titleEl.classList.contains('artwork-title--hidden')) ? titleEl.textContent.trim() : '';
       const rot = frame.classList.contains('artwork-frame--rotate-cw') ? 'lightbox__img--rotate-cw' :
         frame.classList.contains('artwork-frame--rotate-180') ? 'lightbox__img--rotate-180' :
         (frame.classList.contains('artwork-frame--rotate-270') || frame.classList.contains('artwork-frame--rotate-ccw')) ? 'lightbox__img--rotate-270' : null;
-      open(im.src, rot);
+      open(im.src, rot, title);
     });
   });
 })();
