@@ -255,7 +255,8 @@ body {
   z-index: 1;
   pointer-events: none;
 }
-.gallery:not(.gallery--untitled) .artwork:hover .artwork-frame::before {
+.gallery:not(.gallery--untitled) .artwork:hover .artwork-frame::before,
+.gallery--untitled .artwork:hover .artwork-frame::before {
   background: rgba(0, 0, 0, 0.35);
 }
 
@@ -726,8 +727,8 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-titl
   }
 
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .contact-content {
