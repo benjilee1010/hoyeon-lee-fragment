@@ -29,6 +29,7 @@ async function stripDir(dir, label) {
       await sharp(filePath)
         .rotate()
         .toFile(tempPath);
+      fs.unlinkSync(filePath);
       fs.renameSync(tempPath, filePath);
       console.log(`  ✓ ${label}/${file}`);
       processed++;
