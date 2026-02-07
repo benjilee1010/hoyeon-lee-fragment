@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Art portfolio website",
   "scripts": {
-    "strip-metadata": "node strip-metadata.js"
+    "strip-metadata": "node strip-metadata.js",
+    "save-server": "node save-server.js"
   },
   "dependencies": {
     "sharp": "^0.33.0"

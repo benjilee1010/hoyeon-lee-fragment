@@ -326,6 +326,24 @@ function exitEditMode() {
   ['.artwork-title', '#navLogo', '#navLinkArtworks', '#navLinkPhotography', '#navLinkContact', '#footerText', '#contactLabel', '#contactEmail', '#contactBox'].forEach(sel => {
     document.querySelectorAll(sel).forEach(el => { if (el) el.contentEditable = 'false'; });
   });
+  saveEditsToFiles();
+}
+
+function saveEditsToFiles() {
+  const edits = getStoredEdits();
+  fetch('/api/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(edits),
+  }).then((res) => {
+    if (res.ok) {
+      const msg = document.createElement('div');
+      msg.textContent = 'Changes saved to files.';
+      msg.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:0.5rem 1rem;border-radius:4px;font-size:0.9rem;z-index:9999;';
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 2500);
+    }
+  }).catch(() => {});
 }
 
 function loadStoredEdits() {

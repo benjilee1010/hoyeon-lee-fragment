@@ -692,7 +692,7 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-titl
   margin: 0;
 }
 
-/* Responsive – 2 columns on tablet and mobile */
+/* Responsive – 2 columns on tablet and mobile, full width */
 @media (max-width: 1024px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
@@ -701,6 +701,16 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-titl
 }
 
 @media (max-width: 768px) {
+  .main {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
   .nav {
     flex-wrap: wrap;
     padding-top: 1.75rem;
@@ -735,5 +745,18 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-titl
 
   .contact-content {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Small phones / iOS: force 2 columns, minimal side space */
+@media (max-width: 480px) {
+  .main {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
   }
 }
