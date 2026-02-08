@@ -10,6 +10,11 @@
     '<p class="lightbox__info-row"><span class="lightbox__info-label">Price</span><span class="lightbox__info-price"></span></p>' +
     '<p class="lightbox__info-row"><span class="lightbox__info-label">Availability</span><span class="lightbox__info-availability"></span></p>' +
     '</aside>' +
+    '<div class="lightbox__info-mobile">' +
+    '<p class="lightbox__info-row"><span class="lightbox__info-label">Title</span><span class="lightbox__info-mobile-title"></span></p>' +
+    '<p class="lightbox__info-row"><span class="lightbox__info-label">Price</span><span class="lightbox__info-mobile-price"></span></p>' +
+    '<p class="lightbox__info-row"><span class="lightbox__info-label">Availability</span><span class="lightbox__info-mobile-availability"></span></p>' +
+    '</div>' +
     '<p class="lightbox__title"></p><p class="lightbox__sold"></p></div>';
   document.body.appendChild(lightbox);
   const img = lightbox.querySelector('.lightbox__img');
@@ -19,6 +24,29 @@
   const infoTitle = lightbox.querySelector('.lightbox__info-title');
   const infoPrice = lightbox.querySelector('.lightbox__info-price');
   const infoAvailability = lightbox.querySelector('.lightbox__info-availability');
+  const mobileTitle = lightbox.querySelector('.lightbox__info-mobile-title');
+  const mobilePrice = lightbox.querySelector('.lightbox__info-mobile-price');
+  const mobileAvailability = lightbox.querySelector('.lightbox__info-mobile-availability');
+
+  function updateDesktopInfo(titleStr, priceStr, sold) {
+    if (infoTitle) infoTitle.textContent = titleStr || '—';
+    if (infoPrice) infoPrice.textContent = priceStr || '—';
+      if (infoAvailability) {
+        infoAvailability.textContent = sold ? 'SOLD' : 'Available';
+        infoAvailability.classList.toggle('lightbox__info-availability--available', !sold);
+        infoAvailability.classList.toggle('lightbox__info-availability--sold', !!sold);
+      }
+  }
+
+  function updateMobileLightboxInfo(titleStr, priceStr, sold) {
+    if (mobileTitle) mobileTitle.textContent = titleStr || '—';
+    if (mobilePrice) mobilePrice.textContent = priceStr || '—';
+    if (mobileAvailability) {
+      mobileAvailability.textContent = sold ? 'SOLD' : 'Available';
+      mobileAvailability.classList.toggle('lightbox__info-availability--available', !sold);
+      mobileAvailability.classList.toggle('lightbox__info-availability--sold', !!sold);
+    }
+  }
 
   function open(src, rotationClass, title, price, sold, isPhotography) {
     img.src = src;
@@ -29,12 +57,8 @@
     if (!isPhotography) {
       const titleStr = (title && title.trim()) ? title.trim() : '';
       const priceStr = (price && price.trim()) ? price.trim() : '';
-      if (infoTitle) infoTitle.textContent = titleStr || '—';
-      if (infoPrice) infoPrice.textContent = priceStr || '—';
-      if (infoAvailability) {
-        infoAvailability.textContent = sold ? 'SOLD' : 'Available';
-        infoAvailability.classList.toggle('lightbox__info-availability--sold', !!sold);
-      }
+      updateDesktopInfo(titleStr, priceStr, sold);
+      updateMobileLightboxInfo(titleStr, priceStr, sold);
       if (titleEl) {
         const combined = priceStr ? (titleStr ? titleStr + ' - ' + priceStr : priceStr) : titleStr;
         titleEl.textContent = combined;

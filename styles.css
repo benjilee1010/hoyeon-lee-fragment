@@ -763,6 +763,8 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-price.artwork-price--so
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  overflow-y: auto;
+  padding: 0.5rem 0;
 }
 .lightbox__img-wrap {
   display: flex;
@@ -818,6 +820,10 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-price.artwork-price--so
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
   }
+  .lightbox__info-availability.lightbox__info-availability--available {
+    color: #43a047;
+    font-weight: 600;
+  }
   .lightbox__info-availability.lightbox__info-availability--sold {
     color: #e53935;
     font-weight: 600;
@@ -829,9 +835,65 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-price.artwork-price--so
 }
 /* Photography: no title/price/availability in lightbox */
 .lightbox--photography .lightbox__info,
+.lightbox--photography .lightbox__info-mobile,
 .lightbox--photography .lightbox__title,
 .lightbox--photography .lightbox__sold {
   display: none !important;
+}
+/* Mobile: dedicated info panel (same as desktop but below image) */
+.lightbox__info-mobile {
+  display: none;
+  width: 100%;
+  max-width: 320px;
+  padding: 1.25rem 1.5rem;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 0.5rem;
+}
+@media (max-width: 767px) {
+  .lightbox__info-mobile {
+    display: block;
+  }
+  .lightbox__info-mobile .lightbox__info-row {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+  }
+  .lightbox__info-mobile .lightbox__info-row:last-child {
+    margin-bottom: 0;
+  }
+  .lightbox__info-mobile .lightbox__info-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.2rem;
+  }
+  .lightbox__info-mobile-title,
+  .lightbox__info-mobile-price {
+    color: rgba(255, 255, 255, 0.95);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .lightbox__info-mobile-availability {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+  .lightbox__info-mobile-availability.lightbox__info-availability--available {
+    color: #43a047;
+    font-weight: 600;
+  }
+  .lightbox__info-mobile-availability.lightbox__info-availability--sold {
+    color: #e53935;
+    font-weight: 600;
+  }
+  .lightbox__title,
+  .lightbox__sold {
+    display: none !important;
+  }
 }
 .lightbox__title {
   font-family: var(--font-display);
