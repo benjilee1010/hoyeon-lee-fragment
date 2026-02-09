@@ -32,7 +32,7 @@
     if (infoTitle) infoTitle.textContent = titleStr || '—';
     if (infoPrice) infoPrice.textContent = priceStr || '—';
       if (infoAvailability) {
-        infoAvailability.textContent = sold ? 'SOLD' : 'Available';
+        infoAvailability.textContent = sold ? 'off' : 'Available';
         infoAvailability.classList.toggle('lightbox__info-availability--available', !sold);
         infoAvailability.classList.toggle('lightbox__info-availability--sold', !!sold);
       }
@@ -42,7 +42,7 @@
     if (mobileTitle) mobileTitle.textContent = titleStr || '—';
     if (mobilePrice) mobilePrice.textContent = priceStr || '—';
     if (mobileAvailability) {
-      mobileAvailability.textContent = sold ? 'SOLD' : 'Available';
+      mobileAvailability.textContent = sold ? 'off' : 'Available';
       mobileAvailability.classList.toggle('lightbox__info-availability--available', !sold);
       mobileAvailability.classList.toggle('lightbox__info-availability--sold', !!sold);
     }
@@ -69,7 +69,7 @@
         titleEl.style.display = combined ? 'block' : 'none';
       }
       if (soldEl) {
-        soldEl.textContent = sold ? 'SOLD' : '';
+        soldEl.textContent = sold ? 'off' : '';
         soldEl.style.display = sold ? 'block' : 'none';
       }
     }

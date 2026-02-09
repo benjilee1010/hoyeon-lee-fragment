@@ -511,10 +511,10 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-titl
 .gallery:not(.gallery--untitled) .artwork:hover .artwork-price:not(:empty) {
   opacity: 1;
 }
-/* Sold overlay: red SOLD text (always visible when item is sold) */
+/* Sold overlay: red "off" text (always visible when item is sold) */
 .artwork[data-sold="1"]::after,
 .artwork[data-sold="true"]::after {
-  content: 'SOLD';
+  content: 'off';
   position: absolute;
   left: 50%;
   bottom: 18%;
@@ -530,6 +530,17 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-title:not(.artwork-titl
   pointer-events: none;
 }
 .artwork-price.artwork-price--sold {
+  color: #e53935;
+  font-weight: 600;
+}
+/* "sold" in red after the price; price itself stays normal color */
+.artwork[data-sold="1"] .artwork-price,
+.artwork[data-sold="true"] .artwork-price {
+  color: var(--text);
+}
+.artwork[data-sold="1"] .artwork-price::after,
+.artwork[data-sold="true"] .artwork-price::after {
+  content: ' sold';
   color: #e53935;
   font-weight: 600;
 }
