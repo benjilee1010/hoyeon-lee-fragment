@@ -6,12 +6,12 @@
     '<button type="button" class="lightbox__close" aria-label="Close">&times;</button>' +
     '<div class="lightbox__img-wrap"><img class="lightbox__img" src="" alt=""></div>' +
     '<aside class="lightbox__info">' +
-    '<p class="lightbox__info-row"><span class="lightbox__info-label">Title</span><span class="lightbox__info-title"></span></p>' +
+    '<p class="lightbox__info-row lightbox__info-row--title"><span class="lightbox__info-label">Title</span><span class="lightbox__info-title"></span></p>' +
     '<p class="lightbox__info-row"><span class="lightbox__info-label">Price</span><span class="lightbox__info-price"></span></p>' +
     '<p class="lightbox__info-row"><span class="lightbox__info-label">Availability</span><span class="lightbox__info-availability"></span></p>' +
     '</aside>' +
     '<div class="lightbox__info-mobile">' +
-    '<p class="lightbox__info-row"><span class="lightbox__info-label">Title</span><span class="lightbox__info-mobile-title"></span></p>' +
+    '<p class="lightbox__info-row lightbox__info-row--title"><span class="lightbox__info-label">Title</span><span class="lightbox__info-mobile-title"></span></p>' +
     '<p class="lightbox__info-row"><span class="lightbox__info-label">Price</span><span class="lightbox__info-mobile-price"></span></p>' +
     '<p class="lightbox__info-row"><span class="lightbox__info-label">Availability</span><span class="lightbox__info-mobile-availability"></span></p>' +
     '</div>' +
@@ -59,6 +59,9 @@
       const priceStr = (price && price.trim()) ? price.trim() : '';
       updateDesktopInfo(titleStr, priceStr, sold);
       updateMobileLightboxInfo(titleStr, priceStr, sold);
+      lightbox.querySelectorAll('.lightbox__info-row--title').forEach(function (row) {
+        row.style.display = titleStr ? '' : 'none';
+      });
       if (titleEl) {
         const combined = priceStr ? (titleStr ? titleStr + ' - ' + priceStr : priceStr) : titleStr;
         titleEl.textContent = combined;
