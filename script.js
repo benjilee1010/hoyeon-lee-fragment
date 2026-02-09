@@ -32,7 +32,7 @@
     if (infoTitle) infoTitle.textContent = titleStr || '—';
     if (infoPrice) infoPrice.textContent = priceStr || '—';
       if (infoAvailability) {
-        infoAvailability.textContent = sold ? 'off' : 'Available';
+        infoAvailability.textContent = sold ? 'SOLD' : 'Available';
         infoAvailability.classList.toggle('lightbox__info-availability--available', !sold);
         infoAvailability.classList.toggle('lightbox__info-availability--sold', !!sold);
       }
@@ -42,7 +42,7 @@
     if (mobileTitle) mobileTitle.textContent = titleStr || '—';
     if (mobilePrice) mobilePrice.textContent = priceStr || '—';
     if (mobileAvailability) {
-      mobileAvailability.textContent = sold ? 'off' : 'Available';
+      mobileAvailability.textContent = sold ? 'SOLD' : 'Available';
       mobileAvailability.classList.toggle('lightbox__info-availability--available', !sold);
       mobileAvailability.classList.toggle('lightbox__info-availability--sold', !!sold);
     }
@@ -69,7 +69,7 @@
         titleEl.style.display = combined ? 'block' : 'none';
       }
       if (soldEl) {
-        soldEl.textContent = sold ? 'off' : '';
+        soldEl.textContent = sold ? 'SOLD' : '';
         soldEl.style.display = sold ? 'block' : 'none';
       }
     }
@@ -96,7 +96,7 @@
       const title = (titleEl && !titleEl.classList.contains('artwork-title--hidden')) ? titleEl.textContent.trim() : '';
       const priceEl = artwork?.querySelector('.artwork-price');
       const price = priceEl ? priceEl.textContent.trim() : '';
-      const sold = artwork?.dataset.sold === '1' || artwork?.dataset.sold === 'true';
+      const sold = artwork?.dataset.sold === '1' || artwork?.dataset.sold === 'true' || artwork?.dataset.availability === 'false';
       const rot = frame.classList.contains('artwork-frame--rotate-cw') ? 'lightbox__img--rotate-cw' :
         frame.classList.contains('artwork-frame--rotate-180') ? 'lightbox__img--rotate-180' :
         (frame.classList.contains('artwork-frame--rotate-270') || frame.classList.contains('artwork-frame--rotate-ccw')) ? 'lightbox__img--rotate-270' : null;

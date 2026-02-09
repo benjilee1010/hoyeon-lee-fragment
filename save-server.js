@@ -7,7 +7,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 const ROOT = path.join(__dirname);
 
 function serveFile(filePath, res) {
@@ -181,6 +181,7 @@ const server = http.createServer((req, res) => {
 
   let url = req.url === '/' ? '/index.html' : req.url;
   url = url.split('?')[0];
+  try { url = decodeURIComponent(url); } catch (_) {}
   const filePath = path.join(ROOT, url);
   if (!filePath.startsWith(ROOT)) {
     res.writeHead(403);
