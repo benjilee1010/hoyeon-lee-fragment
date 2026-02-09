@@ -561,21 +561,10 @@ body.edit-mode .gallery:not(.gallery--untitled) .artwork-price.artwork-price--so
   color: #c62828;
 }
 
-/* Mobile: show price below image (no hover) */
+/* Mobile: hide price in gallery (only show in lightbox) */
 @media (max-width: 767px) {
   .gallery .artwork-price:not(:empty) {
-    opacity: 1;
-    position: static;
-    transform: none;
-    left: auto;
-    top: auto;
-    color: var(--text);
-    text-shadow: none;
-    margin-top: 0.25rem;
-    text-align: center;
-  }
-  .gallery .artwork:has(.artwork-title--hidden) .artwork-price:not(:empty) {
-    margin-top: 0.25rem;
+    display: none;
   }
 }
 
